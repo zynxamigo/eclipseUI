@@ -1,6 +1,4 @@
---[[ ZunxUI v3 — Roblox UI Library (base Solaris/Orion)
-    Tema FMGFLIX sólido | Sem transparência | loadstring ready ]]
-local Library = {}
+,0000000000000000local Library = {}
 local TS = game:GetService("TweenService")
 local UIS = game:GetService("UserInputService")
 local RS = game:GetService("RunService")
@@ -117,15 +115,15 @@ Library.GlobalCornerValue = 10
 
 local Themes = {
     Default = {
-        Main = Color3.fromRGB(12, 14, 20),
-        Second = Color3.fromRGB(20, 24, 32),
-        Third = Color3.fromRGB(28, 34, 46),
-        Accent = Color3.fromRGB(6, 182, 212),
-        ElementAccent = Color3.fromRGB(6, 182, 212),
-        GradientStart = Color3.fromRGB(6, 182, 212),
-        GradientEnd = Color3.fromRGB(139, 92, 246),
-        Text = Color3.fromRGB(245, 247, 250),
-        TextDark = Color3.fromRGB(148, 163, 184),
+        Main = Color3.fromRGB(6, 6, 8),
+        Second = Color3.fromRGB(12, 12, 16),
+        Third = Color3.fromRGB(18, 18, 24),
+        Accent = Color3.fromRGB(4, 150, 180),
+        ElementAccent = Color3.fromRGB(4, 150, 180),
+        GradientStart = Color3.fromRGB(4, 120, 150),
+        GradientEnd = Color3.fromRGB(90, 60, 160),
+        Text = Color3.fromRGB(225, 228, 235),
+        TextDark = Color3.fromRGB(95, 100, 115),
         Error = Color3.fromRGB(239, 68, 68),
         Success = Color3.fromRGB(16, 185, 129),
         Warning = Color3.fromRGB(245, 158, 11),
@@ -313,14 +311,15 @@ local Themes = {
         Background = ""
     },
     Void = {
-        Main = Color3.fromRGB(12, 12, 12),
-        Second = Color3.fromRGB(22, 22, 22),
-        Accent = Color3.fromRGB(220, 220, 220),
-        ElementAccent = Color3.fromRGB(220, 220, 220),
-        GradientStart = Color3.fromRGB(150, 150, 150),
-        GradientEnd = Color3.fromRGB(255, 255, 255),
-        Text = Color3.fromRGB(240, 240, 240),
-        TextDark = Color3.fromRGB(120, 120, 120),
+        Main = Color3.fromRGB(4, 4, 4),
+        Second = Color3.fromRGB(10, 10, 10),
+        Third = Color3.fromRGB(16, 16, 16),
+        Accent = Color3.fromRGB(180, 180, 180),
+        ElementAccent = Color3.fromRGB(180, 180, 180),
+        GradientStart = Color3.fromRGB(100, 100, 100),
+        GradientEnd = Color3.fromRGB(200, 200, 200),
+        Text = Color3.fromRGB(220, 220, 220),
+        TextDark = Color3.fromRGB(85, 85, 85),
         Error = Color3.fromRGB(255, 100, 100),
         Transparency = 0,
         HudTransparency = 0,
@@ -357,7 +356,7 @@ for _, t in pairs(Themes) do
     end
 end
 
-Themes.FMGFLIX = Themes.Default
+Themes.eclipse = Themes.Default
 
 local function GetAssetId(id)
     if not id or id == "" then
@@ -1660,7 +1659,7 @@ function Library:CreateWindow(Settings)
         Size = UDim2.new(0, 210, 0, 26),
         Position = UDim2.new(1, -260, 0.5, -13),
         BackgroundColor3 = SelectedTheme.Second,
-        BackgroundTransparency = 0.45,
+        BackgroundTransparency = 0,
         BorderSizePixel = 0,
         ZIndex = 7,
         ThemeTag = "Second"
@@ -1995,7 +1994,7 @@ function Library:CreateWindow(Settings)
         TabBtn.MouseEnter:Connect(function()
             if ActiveTab and ActiveTab.Btn ~= TabBtn then
                 if leaveTweenTab then leaveTweenTab:Cancel() end
-                hoverTweenTab = TS:Create(TabBtn, TweenInfo.new(0.2), {BackgroundTransparency = 0.8})
+                hoverTweenTab = TS:Create(TabBtn, TweenInfo.new(0.2), {BackgroundTransparency = 0.55})
                 hoverTweenTab:Play()
             end
         end)
@@ -2169,7 +2168,7 @@ function Library:CreateWindow(Settings)
                 local hoverTween, leaveTween
                 btn.MouseEnter:Connect(function()
                     if leaveTween then leaveTween:Cancel() end
-                    hoverTween = TS:Create(btn, TweenInfo.new(0.2), {BackgroundTransparency = 0.3})
+                    hoverTween = TS:Create(btn, TweenInfo.new(0.2), {BackgroundTransparency = 0.15})
                     hoverTween:Play()
                 end)
                 btn.MouseLeave:Connect(function()
@@ -2495,7 +2494,7 @@ function Library:CreateWindow(Settings)
                     Parent = Frame,
                     Size = UDim2.new(1, -24, 0, 6),
                     Position = UDim2.new(0, 12, 0, 28),
-                    BackgroundColor3 = Color3.fromRGB(40, 40, 45),
+                    BackgroundColor3 = Color3.fromRGB(14, 14, 18),
                     Text = "",
                     AutoButtonColor = false,
                     ZIndex = 8
@@ -2742,8 +2741,8 @@ function Library:CreateWindow(Settings)
                     Parent = Drop,
                     Size = UDim2.new(1, -20, 0, 28),
                     Position = UDim2.new(0, 10, 0, 38),
-                    BackgroundColor3 = SelectedTheme.Main,
-                    BackgroundTransparency = 0.75,
+                    BackgroundColor3 = SelectedTheme.Third or SelectedTheme.Main,
+                    BackgroundTransparency = 0,
                     BorderSizePixel = 0,
                     ZIndex = 9,
                     ThemeTag = "Main"
@@ -2834,8 +2833,8 @@ function Library:CreateWindow(Settings)
                             local Btn = Create("TextButton", {
                                 Parent = Container,
                                 Size = UDim2.new(1, 0, 0, 28),
-                                BackgroundColor3 = SelectedTheme.Main,
-                                BackgroundTransparency = 0.8,
+                                BackgroundColor3 = SelectedTheme.Third or SelectedTheme.Main,
+                                BackgroundTransparency = 0.35,
                                 Text = tostring(item),
                                 Font = Library.GlobalFont,
                                 TextColor3 = SelectedTheme.TextDark,
@@ -3460,7 +3459,7 @@ function Library:CreateWindow(Settings)
 
                 local SearchHolder = Create("Frame", {
                     Parent = Drop, Size = UDim2.new(1, -20, 0, 28), Position = UDim2.new(0, 10, 0, 38),
-                    BackgroundColor3 = SelectedTheme.Main, BackgroundTransparency = 0.75, BorderSizePixel = 0, ZIndex = 9, ThemeTag = "Main"
+                    BackgroundColor3 = SelectedTheme.Third or SelectedTheme.Main, BackgroundTransparency = 0, BorderSizePixel = 0, ZIndex = 9, ThemeTag = "Main"
                 })
                 AddCorner(SearchHolder, 6)
 
@@ -3977,7 +3976,7 @@ function Library:CreateWindow(Settings)
             Elements.CreateKeybindButton = Elements.CreateKeybind
             Elements.CreateThemeSwitcher = function(self, Cfg)
                 local names = {}
-                for n, _ in pairs(Themes) do if n ~= "FMGFLIX" then table.insert(names, n) end end
+                for n, _ in pairs(Themes) do if n ~= "eclipse" then table.insert(names, n) end end
                 table.sort(names)
                 return self:CreateDropdown({
                     Name = Cfg and Cfg.Name or "Tema",
@@ -4468,11 +4467,5 @@ function Library:CreateWindow(Settings)
 
     return Funcs
 end
-
---[[ ZunxUI v3 — ~4470 linhas | Orion/Solaris completa, tema FMGFLIX sólido
-    Toggle | KeybindToggle | Slider | Button | HoldButton | Keybind | Dropdown+Search
-    PlayerDropdown offline | ColorPicker HSV | KeySystem | Watermark FPS/Ping | Resize
-    Global Search | 2 colunas | Config/Theme Save Load Delete AutoLoad | Mobile toggle
-]]
 
 return Library
